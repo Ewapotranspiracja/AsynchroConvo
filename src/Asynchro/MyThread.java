@@ -14,8 +14,8 @@ public class MyThread extends Pictures implements Runnable{
     public MyThread(int id){
     
     this.id = id;
-    this.a=id*146+1;  ///start
-    this.imax=a+146;  ////end
+    this.a=id*128+1;  ///start
+    this.imax=a+128;  ////end
          
     }
     
@@ -31,7 +31,8 @@ public class MyThread extends Pictures implements Runnable{
             for (int j = 1; j < 1023; j++) {
                 index = (i * 1024) + j;
 
-                image1D[index] = image1Dold[index - 1024] * 0.1f + image1Dold[index + 1024] * 0.1f + image1Dold[index] * 0.6f + image1Dold[index + 1] * 0.1f + image1Dold[index - 1] * 0.1f;
+                image1D[index] = image1Dold[index - 1024] * 0.1f + image1Dold[index + 1024] * 0.1f + image1Dold[index] * 0.6f 
+                        + image1Dold[index + 1] * 0.1f + image1Dold[index - 1] * 0.1f;
 
             }
         }////Wątek wylicza swój fragment tablicy od pozycji startowej w prawo i następnie w dół

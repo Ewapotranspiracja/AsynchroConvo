@@ -44,6 +44,7 @@ public class Asynchroniczny extends Pictures {
              ///Wątek główny wypełnia obramowanie górę + boki
              DoTop();
              DoBorders();
+               DoRest(); ///wypełnia swoja czesc wnetrza
                
                ////Wątek główny czeka, aż wszystkie pozostałe siedem wątków zakończy pracę
                for (int j=0; j<7;j++){
@@ -70,18 +71,34 @@ public class Asynchroniczny extends Pictures {
            
            System.out.println("KONIEC: " + (stop-start) + "ms.");
            p.setImage(conv1Dto2D(image1D));
-        /// p.writePGM("C:\\Users\\Lena\\Documents\\NetBeansProjects\\Asynchro\\AsynchroImage2.pgm");
+         p.writePGM("C:\\Users\\Lena\\Documents\\NetBeansProjects\\Asynchro\\AsynchroImage2.pgm");
            System.out.println("ZAPISANO");
            
            
            
             
         } catch (Exception ex) {
-            
+            Logger.getLogger(Asynchro.class.getName()).log(Level.SEVERE, null, ex);
         }}
     
     
+private void DoRest(){
+int a = 7*128+1;
+int imax = a+126;
+int index;
+for (int i = a; i <imax; i++) {
+    
+            for (int j = 1; j < 1023; j++) {
+                index = (i * 1024) + j;
 
+    
+                image1D[index] = image1Dold[index - 1024] * 0.1f + image1Dold[index + 1024] * 0.1f + image1Dold[index] * 0.6f 
+                        + image1Dold[index + 1] * 0.1f + image1Dold[index - 1] * 0.1f;
+
+            }
+        }////Wątek wylicza swój fragment tablicy od pozycji startowej w prawo i następnie w dół
+
+}
     
     private void DoTop(){
    
